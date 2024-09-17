@@ -25,3 +25,4 @@ launchSettings.json
 *.nuget.targets
 *.code-workspace
 *.binlog
+/src/docfx/Properties/PublishProfiles/FolderProfile.pubxml
