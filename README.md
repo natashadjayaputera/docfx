@@ -14,7 +14,7 @@
 Build your technical documentation site with docfx, with landing pages, markdown, API reference docs for .NET, REST API and more.
 
 ---
-
+ 
 As you may have heard docfx has been transitioned to be a .NET Foundation project. Microsoft Learn no longer uses docfx and do not intend to support the project since Nov 2022.
 
 Docfx is planned to continue as a community-driven project. We hope to produce future releases with new features and enhancements to support existing and new use cases. We also would like to invite any interested parties to be involved in this project. If you'd like to contact the community team please open a discussion thread.
