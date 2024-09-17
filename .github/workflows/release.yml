@@ -58,10 +58,6 @@ jobs:
         name: bin
         path: drop/bin
 
-    - name: Publish NuGet packages
-      run: |
-        dotnet nuget push drop/nuget/*.nupkg --api-key "${{ secrets.NUGET_KEY }}" --skip-duplicate --source https://api.nuget.org/v3/index.json
-
     - name: Upload GitHub release
       run: |
         gh release upload --repo dotnet/docfx ${GITHUB_REF_NAME} drop/bin/docfx-win-x64-${GITHUB_REF_NAME}.zip
