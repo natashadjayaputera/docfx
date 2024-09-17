@@ -65,6 +65,7 @@ internal class SymbolVisitorAdapter : SymbolVisitor<MetadataItem>
             item.SeeAlsos = commentModel.SeeAlsos;
             item.Examples = commentModel.Examples;
             item.CommentModel = commentModel;
+            item.Xrefs = commentModel.Xrefs;
         }
 
         if (item.Exceptions != null)

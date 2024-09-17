@@ -226,6 +226,7 @@ partial class DotnetApiCatalog
                 Examples(comment);
                 Remarks(comment);
                 SeeAlsos(comment);
+                Xrefs(comment);
             }
 
             void Delegate(INamedTypeSymbol type)
@@ -246,6 +247,7 @@ partial class DotnetApiCatalog
                 Examples(comment);
                 Remarks(comment);
                 SeeAlsos(comment);
+                Xrefs(comment);
             }
 
             void ClassLike(INamedTypeSymbol type)
@@ -272,6 +274,7 @@ partial class DotnetApiCatalog
                 ExtensionMethods(type);
 
                 Examples(comment);
+                Xrefs(comment);
                 Remarks(comment);
 
                 Methods(SymbolHelper.IsConstructor, "Constructors");
@@ -521,6 +524,7 @@ partial class DotnetApiCatalog
                 TypeParameters(symbol, comment, headingLevel + 1);
 
                 Examples(comment, headingLevel + 1);
+                Xrefs(comment, headingLevel + 1);
                 Remarks(comment, headingLevel + 1);
                 Exceptions(comment, headingLevel + 1);
                 SeeAlsos(comment, headingLevel + 1);
@@ -544,6 +548,7 @@ partial class DotnetApiCatalog
                 });
 
                 Examples(comment, headingLevel + 1);
+                Xrefs(comment, headingLevel + 1);
                 Remarks(comment, headingLevel + 1);
                 Exceptions(comment, headingLevel + 1);
                 SeeAlsos(comment, headingLevel + 1);
@@ -567,6 +572,7 @@ partial class DotnetApiCatalog
                 });
 
                 Examples(comment, headingLevel + 1);
+                Xrefs(comment, headingLevel + 1);
                 Remarks(comment, headingLevel + 1);
                 Exceptions(comment, headingLevel + 1);
                 SeeAlsos(comment, headingLevel + 1);
@@ -590,6 +596,7 @@ partial class DotnetApiCatalog
                 });
 
                 Examples(comment, headingLevel + 1);
+                Xrefs(comment, headingLevel + 1);
                 Remarks(comment, headingLevel + 1);
                 Exceptions(comment, headingLevel + 1);
                 SeeAlsos(comment, headingLevel + 1);
@@ -655,6 +662,18 @@ partial class DotnetApiCatalog
                         body.Add(new Markdown { markdown = example });
                 }
             }
+
+            void Xrefs(XmlComment? comment, int headingLevel = 2)
+            {
+                if (comment?.Xrefs?.Count > 0)
+                {
+                    Heading(headingLevel, "Xrefs");
+
+                    foreach (var xref in comment.Xrefs)
+                        body.Add(new Markdown { markdown = xref });
+                }
+            }
+
 
             void Remarks(XmlComment? comment, int headingLevel = 2)
             {

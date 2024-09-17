@@ -97,6 +97,11 @@ internal class MetadataItem : ICloneable
     [JsonPropertyName("example")]
     public List<string> Examples { get; set; }
 
+    [YamlMember(Alias = "xref")]
+    [JsonProperty("xref")]
+    [JsonPropertyName("xref")]
+    public List<string> Xrefs { get; set; }
+
     [YamlMember(Alias = "syntax")]
     [JsonProperty("syntax")]
     [JsonPropertyName("syntax")]

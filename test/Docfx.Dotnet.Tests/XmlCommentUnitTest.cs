@@ -1,6 +1,7 @@
 // Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 
+using Docfx.Plugins;
 using Xunit;
 
 namespace Docfx.Dotnet.Tests;
@@ -231,6 +232,15 @@ public class XmlCommentUnitTest
             </doc>
             """);
 
+        string xref1 = "first_xref ";
+        string xref2 = "second_xref";
+        var xrefComment = XmlComment.Parse(
+            $"<doc>" +
+            $"<xref>{xref1}</xref>" +
+            $"<xref>{xref2}</xref>" +
+            $"</doc>"
+            );
+
         Assert.Equal("""
             public int Main(string[] args)
             {
@@ -253,6 +263,10 @@ public class XmlCommentUnitTest
             }
             ```
             """, comment.Remarks, ignoreLineEndingDifferences: true);
+
+        Assert.NotEqual(xref1, xrefComment.Xrefs[0]);
+        Assert.Equal(xref1.Trim(), xrefComment.Xrefs[0]);
+        Assert.Equal(xref2, xrefComment.Xrefs[1]);
     }
 
     [Fact]

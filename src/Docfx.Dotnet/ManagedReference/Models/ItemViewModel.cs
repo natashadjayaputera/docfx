@@ -283,6 +283,11 @@ public class ItemViewModel : IOverwriteDocumentViewModel, IItemWithMetadata
     [MarkdownContent]
     public List<string> Examples { get; set; }
 
+    [YamlMember(Alias = "xref")]
+    [JsonProperty("xref")]
+    [JsonPropertyName("xref")]
+    public List<string> Xrefs { get; set; }
+
     [YamlMember(Alias = "syntax")]
     [JsonProperty("syntax")]
     [JsonPropertyName("syntax")]

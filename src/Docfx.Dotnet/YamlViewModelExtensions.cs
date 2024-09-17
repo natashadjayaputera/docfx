@@ -257,6 +257,7 @@ internal static class YamlViewModelExtensions
             Summary = model.Summary,
             Remarks = model.Remarks,
             Examples = model.Examples,
+            Xrefs = model.Xrefs,
             Syntax = model.Syntax.ToSyntaxDetailViewModel(),
             Overridden = model.Overridden,
             Overload = model.Overload,

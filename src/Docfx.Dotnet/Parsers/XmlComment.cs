@@ -38,6 +38,8 @@ internal class XmlComment
 
     public List<ExceptionInfo> Exceptions { get; private set; }
 
+    public List<string> Xrefs { get; private set; }
+
     public List<LinkInfo> SeeAlsos { get; private set; }
 
     public List<string> Examples { get; private set; }
@@ -90,6 +92,7 @@ internal class XmlComment
         Examples = GetMultipleExampleNodes(nav, "/member/example").ToList();
         Parameters = GetListContent(nav, "/member/param", "parameter", context);
         TypeParameters = GetListContent(nav, "/member/typeparam", "type parameter", context);
+        Xrefs = GetMultipleXrefNodes(nav, "/member/xref").ToList();
 
         // Nulls and empty list are treated differently in overwrite files:
         //   null values can be replaced, but empty list are merged by merge key
@@ -394,6 +397,19 @@ internal class XmlComment
     }
 
     private IEnumerable<string> GetMultipleExampleNodes(XPathNavigator navigator, string selector)
+    {
+        var iterator = navigator.Select(selector);
+        if (iterator == null)
+        {
+            yield break;
+        }
+        foreach (XPathNavigator nav in iterator)
+        {
+            yield return GetXmlValue(nav);
+        }
+    }
+
+    private IEnumerable<string> GetMultipleXrefNodes(XPathNavigator navigator, string selector)
     {
         var iterator = navigator.Select(selector);
         if (iterator == null)
